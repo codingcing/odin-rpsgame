@@ -1,23 +1,25 @@
-let userChoice, computerChoice, userScore, computerScore;
+let userChoice, computerChoice, userScore, computerScore, currentScore;
 
 document.getElementById("rock").addEventListener("click", () => {
     userChoice = "Rock";
-    getUserChoice();
+    getComputerChoice();
+    updateHTML();
 });
 document.getElementById("paper").addEventListener("click", () => {
     userChoice = "Paper";
-    getUserChoice();
+    getComputerChoice();
+    updateHTML();
 });
 document.getElementById("scissors").addEventListener("click", () => {
     userChoice = "Scissors";
-    getUserChoice();
+    getComputerChoice();
+    updateHTML();
 });
 // In future, we don't want this to be a function. The game should automatically begin when a user presses a button, and only reset
 // in case the score reaches 5
 
 function getComputerChoice(){
     let nonce = Math.floor(Math.random()*3)+1;
-    let computerChoice;
     switch (nonce){
         case 1:
             computerChoice = "Rock";
@@ -59,3 +61,10 @@ function getWinner(x,y){
     // the idea that both x and y must be defined for getWinner to run
 }
 
+function updateHTML(){
+    document.getElementById("userChoice").innerHTML = userChoice;
+    document.getElementById("computerChoice").innerHTML = computerChoice;
+    document.getElementById("userScore").innerHTML = userScore;
+    document.getElementById("computerScore").innerHTML = computerScore;
+    document.getElementById("currentScore").innerHTML = currentScore;
+}
