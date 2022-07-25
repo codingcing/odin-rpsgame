@@ -1,4 +1,5 @@
-let userChoice, computerChoice, userScore, computerScore, currentScore;
+let userChoice, computerChoice, userScore = 0, computerScore = 0, currentScore = 0;
+updateHTML();
 
 document.getElementById("rock").addEventListener("click", () => {
     userChoice = "Rock";
@@ -62,9 +63,9 @@ function getWinner(x,y){
 }
 
 function updateHTML(){
-    document.getElementById("userChoice").innerHTML = userChoice;
-    document.getElementById("computerChoice").innerHTML = computerChoice;
-    document.getElementById("userScore").innerHTML = userScore;
-    document.getElementById("computerScore").innerHTML = computerScore;
-    document.getElementById("currentScore").innerHTML = currentScore;
+    (userChoice)? document.getElementById("userChoice").innerHTML = userChoice : document.getElementById("userChoice").innerHTML = "";
+    (computerChoice)? document.getElementById("computerChoice").innerHTML = computerChoice : document.getElementById("computerChoice").innerHTML = "";
+    (userScore)? document.getElementById("userScore").innerHTML = userScore : document.getElementById("userScore").innerHTML = 0;
+    (computerScore)? document.getElementById("computerScore").innerHTML = computerScore : document.getElementById("computerScore").innerHTML = 0;
+    (currentScore)? document.getElementById("currentScore").innerHTML = currentScore : document.getElementById("currentScore").innerHTML = 0;
 }
