@@ -1,31 +1,47 @@
-let userChoice, computerChoice, userScore = 0, computerScore = 0, currentScore = 0, explan1 = "", explan2 = "", roundOn = true, userWins = 0, computerWins = 0;
+let userChoice, computerChoice, userScore = 0, computerScore = 0, currentScore = 0, explan1 = "", explan2 = "", roundOn = true, userWins = 0, computerWins = 0, winner = "";
+
+const modal = document.getElementById("modal");
+const overlay = document.getElementById("overlay");
+const close = document.getElementById("modal-close");
 
 updateHTML();
+
+close.addEventListener("click", () => {
+    modal.classList.remove("active");
+    overlay.classList.remove("active");
+})
+
+overlay.addEventListener("click", () => {
+    modal.classList.remove("active");
+    overlay.classList.remove("active");
+})
 
 document.getElementById("rock").addEventListener("click", () => {
     userChoice = "Rock";
     getComputerChoice();
     getBattWinner(userChoice,computerChoice);
     getRoundWinner();
-    explan1 = "";
-    explan2 = "";
+    setTimeout(resetExplans, 301);
 });
 document.getElementById("paper").addEventListener("click", () => {
     userChoice = "Paper";
     getComputerChoice();
     getBattWinner(userChoice,computerChoice);
     getRoundWinner();
-    explan1 = "";
-    explan2 = "";
+    setTimeout(resetExplans, 301);
 });
 document.getElementById("scissors").addEventListener("click", () => {
     userChoice = "Scissors";
     getComputerChoice();
     getBattWinner(userChoice,computerChoice);
     getRoundWinner();
+    setTimeout(resetExplans, 301);
+});
+
+function resetExplans(){
     explan1 = "";
     explan2 = "";
-});
+}
 
 function getComputerChoice(){
     let nonce = Math.floor(Math.random()*3)+1;
@@ -73,12 +89,22 @@ function getBattWinner(x,y){
 }
 
 function updateHTML(){
-    (userChoice)? document.getElementById("userChoice").innerHTML = userChoice : document.getElementById("userChoice").innerHTML = "";
-    (computerChoice)? document.getElementById("computerChoice").innerHTML = computerChoice : document.getElementById("computerChoice").innerHTML = "";
+    (userChoice === "Rock")? document.getElementById("userChoice").innerHTML = `<img src="images/rock.png">` : 
+    (userChoice === "Paper")? document.getElementById("userChoice").innerHTML = `<img src="images/paper.png">` :
+    (userChoice === "Scissors")? document.getElementById("userChoice").innerHTML = `<img src="images/scissors.png">` :
+    document.getElementById("userChoice").innerHTML = "";
+    
+    (computerChoice === "Rock")? document.getElementById("computerChoice").innerHTML = `<img src="images/rock.png">` : 
+    (computerChoice === "Paper")? document.getElementById("computerChoice").innerHTML = `<img src="images/paper.png">` :
+    (computerChoice === "Scissors")? document.getElementById("computerChoice").innerHTML = `<img src="images/scissors.png">` :
+    document.getElementById("computerChoice").innerHTML = "";
+
     (userScore)? document.getElementById("userScore").innerHTML = userScore : document.getElementById("userScore").innerHTML = 0;
     (computerScore)? document.getElementById("computerScore").innerHTML = computerScore : document.getElementById("computerScore").innerHTML = 0;
     (userWins)? document.getElementById("userWins").innerHTML = userWins : document.getElementById("userWins").innerHTML = 0;
     (computerWins)? document.getElementById("computerWins").innerHTML = computerWins : document.getElementById("computerWins").innerHTML = 0;
+    document.getElementById("gameWinner").innerHTML =  winner;
+
     (explan1)? document.getElementById("explan1").innerHTML = explan1 : document.getElementById("explan1").innerHTML = "";
     (explan2)? document.getElementById("explan2").innerHTML = explan2 : document.getElementById("explan2").innerHTML = "";
 }
@@ -102,7 +128,10 @@ function getRoundWinner(){
         document.getElementById("rock").setAttribute("disabled", true);
         document.getElementById("paper").setAttribute("disabled", true);
         document.getElementById("scissors").setAttribute("disabled", true);
+        winner = "you"
         updateHTML();
+        modal.classList.add("active");
+        overlay.classList.add("active");
         setTimeout(newRound,2000);
         setTimeout(updateHTML,2001);
     } else if (computerScore === 5){
@@ -110,10 +139,13 @@ function getRoundWinner(){
         document.getElementById("rock").setAttribute("disabled", true);
         document.getElementById("paper").setAttribute("disabled", true);
         document.getElementById("scissors").setAttribute("disabled", true);
+        winner = "the computer"
         updateHTML();
+        modal.classList.add("active");
+        overlay.classList.add("active");
         setTimeout(newRound,2000);
         setTimeout(updateHTML,2001);
     } else{
-        updateHTML();
+        setTimeout(updateHTML, 300);
     };
 }

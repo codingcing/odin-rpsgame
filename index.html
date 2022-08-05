@@ -4,22 +4,49 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock, Paper, Scissors!</title>
     <link rel="stylesheet" href="style.css" >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet" type="text/css">
+    <title>Rock, Paper, Scissors!</title>
+    <script src="script.js" defer></script>
 </head>
 <body>
-    <h1 style="text-align:center">Rock, Paper, Scissors!</h1>
-    <p>Please select your input below! First to 5 rounds wins each game!</p>
-    <div class="userInputs">
-        <button id="rock">Rock</button>
-        <button id="paper">Paper</button>
-        <button id="scissors">Scissors</button>
+    <div class="head-container">
+        <p id="userscore">USER ROUNDS: <span id="userScore"></span></p>
+        <h1 id="header">Rock, Paper, Scissors!</h1>
+        <p id="computerscore">COMPUTER ROUNDS: <span id="computerScore"></span></p>
     </div>
-    <p>You chose: <span id="userChoice"></span></p>
-    <p>Computer chose: <span id="computerChoice"></span></p>
-    <p>Overall: User has won <span id="userWins"></span> game(s) and Computer has won <span id="computerWins"></span> game(s)</p>
-    <p>User - <span id="userScore"></span> <span id="explan1"></span></p>
-    <p>Computer - <span id="computerScore"></span> <span id="explan2"></span></p>
-    <script src="script.js"></script>
+    <div class="main-container">
+        <div id="modal" class="modal">
+            <div class="modal-header">
+                <button data-close-button id="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <img src="images/trophy.png">
+                <br>The winner of this game is <span id="gameWinner"></span>!!!! The score is now <span id="userWins"></span> game(s) won for you and 
+                <span id="computerWins"></span> for the Computer.
+            </div>
+        </div>
+        
+        <div class="sub-container-1">
+            <span id="explan1"></span>
+            <div class="sub-container-2">
+                <p id="intro">Choose your fated warrior below!</p>
+                <div class="userInputs">
+                    <button id="rock"><img src="images/rock.png"></button>
+                    <button id="paper"><img src="images/paper.png"></button>
+                    <button id="scissors"><img src="images/scissors.png"></button>
+                </div>
+            </div>  
+            <span id="explan2"></span>
+        </div>
+        <div class="choices">
+            <p id="uc">USER CHOSE: <span id="userChoice"></span></p>
+            <p id="cc">COMPUTER CHOSE: <span id="computerChoice"></span></p>
+        </div>
+    </div>
+    <div class="footer">Copyright a.olugboji7@gmail.com 2022</div>
+    <div id="overlay"></div>
 </body>
 </html>
